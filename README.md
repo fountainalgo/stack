@@ -6,7 +6,7 @@ A stack is an ordered collection of items that follows the LIFO (short for Last 
 const Stack = require('stack');
 
 
-Problem: Decimal to binary
+Problem1: Decimal to binary
 
 Solution:
 
@@ -29,3 +29,31 @@ function DectoBinary(decNum){
 
 }
 
+Problem 2: Whether paranthenses are balanced or not. 
+Solution:
+function areBalancedParentheses(str){
+	let stackObj = new Stack();
+	let dict = {
+					"]" : "[",
+					"}" : "{",
+					")" :"("
+				}
+	for(let i=0; i<str.length; i++){
+			if(str[i]=='[' || str[i]=='{' || str[i]=='('){
+					stackObj.push(str[i]);	
+			}if(str[i]==']' || str[i]=='}' || str[i]==')'){
+				if(stackObj._storage[stackObj._size-1] == dict[str[i]]){
+					stackObj.pop();	
+				}
+			}
+			
+	}
+
+	
+	if(stackObj._size > 0){
+		return false;
+	}
+	return true;
+}
+
+console.log(isBalancedParentheses("[test(here(){this[this][hi{ert(ertryt)}]})dsdsds]"))
